@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Build C++ module
+        run: |
+          mkdir build && cd build
+          cmake .. -DPYBIND11_FINDPYTHON=ON
+          cmake --build . --config Release
+          cp audio_core_cpp*.so ../ || true
+          cp audio_core_cpp*.pyd ../ || true
+
+      - name: Run tests
+        run: pytest tests/ -v

@@ -1,0 +1,45 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# C++ build
+cmake-build*/
+*.so
+*.pyd
+*.dll
+*.o
+*.obj
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output files
+output/
+*.mid
+*.xml
+!tests/test_samples/*
+
+# Test files
+test.db
+test_melody.wav
+
+# Audio/Video files (too large for git)
+*.mp3
+*.wav
+*.flac
+*.mp4
+*.avi
+*.mkv
+!tests/test_samples/*
