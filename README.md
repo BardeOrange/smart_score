@@ -5,7 +5,7 @@ Features a C++ audio processing core (FFT, spectrogram, pitch detection)
 with a Python interface for note detection, rhythm analysis, and sheet music generation.
 
 ![CI](https://github.com/BardeOrange/smart_score/actions/workflows/ci.yml/badge.svg)
-![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)
+![Python](https://img.shields.io/badge/Python-3.13%2B-blue?logo=python)
 ![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus)
 ![License](https://img.shields.io/badge/License-PERSO-green)
 

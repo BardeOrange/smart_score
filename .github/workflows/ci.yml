@@ -31,13 +31,28 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
+      - name: Get pybind11 CMake dir
+        id: pybind11
+        run: |
+          PYBIND11_DIR=$(python -c "import pybind11; print(pybind11.get_cmake_dir())")
+          echo "cmake_dir=$PYBIND11_DIR" >> $GITHUB_OUTPUT
+          echo "Found pybind11 at: $PYBIND11_DIR"
+
       - name: Build C++ module
         run: |
-          mkdir build && cd build
-          cmake .. -DPYBIND11_FINDPYTHON=ON
-          cmake --build . --config Release
-          cp audio_core_cpp*.so ../ || true
-          cp audio_core_cpp*.pyd ../ || true
+          cmake -S . -B build \
+            -DPYBIND11_FINDPYTHON=ON \
+            -Dpybind11_DIR=${{ steps.pybind11.outputs.cmake_dir }}
+          cmake --build build --config Release
+
+      - name: Copy C++ module
+        run: |
+          find build -name "audio_core_cpp*" -type f
+          find build -name "audio_core_cpp*.so" -exec cp {} . \;
+          ls -la audio_core_cpp*
+
+      - name: Verify module
+        run: python -c "import audio_core_cpp; print('Module loaded OK')"
 
       - name: Run tests
         run: pytest tests/ -v
