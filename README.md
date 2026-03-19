@@ -4,9 +4,10 @@ A music transcription tool that converts audio/video files into sheet music.
 Features a C++ audio processing core (FFT, spectrogram, pitch detection)
 with a Python interface for note detection, rhythm analysis, and sheet music generation.
 
-![CI](https://github.com/YOUR_USERNAME/music-transcriber/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/BardeOrange/smart_score/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)
 ![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus)
+![License](https://img.shields.io/badge/License-PERSO-green)
 
 ---
 
@@ -93,7 +94,7 @@ Sheet Music ----------> MIDI + MusicXML + PDF
 ## Project Structure
 
 ```
-music-transcriber/
+smart_score/
 ├── cpp/
 │   ├── include/
 │   │   ├── fft.h
@@ -141,8 +142,8 @@ music-transcriber/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/music-transcriber.git
-cd music-transcriber
+git clone https://github.com/BardeOrange/smart_score.git
+cd smart_score
 ```
 
 2. **Create virtual environment**
